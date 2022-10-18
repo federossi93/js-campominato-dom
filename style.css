@@ -4,18 +4,22 @@
     box-sizing: border-box;
 }
 
+body{
+    background-color: rgb(115, 167, 220);
+}
+
 .center{
     text-align: center;
     margin-top: 100px;
     margin-bottom: 100px;
 }
 
-.container{
-    width: 1200px;
+.containers{
+    width: 600px;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    background-color: rgb(138, 141, 141);
+    background-color: rgb(184, 186, 186);
 }
 
 .casella{
@@ -37,5 +41,5 @@
 }
 
 .lightblue{
-    background-color: lightblue;
+    background-color: green;
 }

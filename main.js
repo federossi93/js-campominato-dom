@@ -6,10 +6,11 @@ ed emetto un messaggio in console con il numero della cella cliccata.*/
 
 
 
-let btn = document.querySelector("button")
-console.log(btn);
+let btnGioca = document.querySelector(".gioca")
 
-let container = document.querySelector(".container")
+let btnReset = document.querySelector(".reset")
+
+let container = document.querySelector(".containers")
 console.log(container);
 
 //creo una evento click al pulsante per far comparire la griglia
@@ -23,14 +24,21 @@ console.log(container);
 function createGame(GenerateGame,gameField) {
     GenerateGame.addEventListener("click",function(){
         console.log("ho cliccato il bottone");
-        gameField.classList.remove("d_none")
     })
     return GenerateGame
 }
 
-createGame(btn,container)
+createGame(btnGioca,container)
 
+//reset campo di gioco
 
+function reset() {
+    btnReset.addEventListener("click",function(){
+        location.reload();
+    })
+}
+
+reset(btnReset,container)
 
 
 //creare un ciclo per creare le caselle con dentro 1 numero da 1 a 100
@@ -38,17 +46,13 @@ createGame(btn,container)
 
 let cellQuantity = 100
 
-quantityBomb = 16
-
-let bombs = []
-
-
 let contatore = false
 
 let score = 0
 
 let stampScore = document.querySelector(".final_score")
 
+let numeriUsciti = []
 
 /**
  * 
@@ -66,17 +70,19 @@ function cellGeneretor(cell) {
         casella.addEventListener("click",function() {
             console.log(i);
             
-            if (!bombs.includes(i)) {
-                casella.classList.toggle("lightblue") 
+            if (!bombs.includes(i) && !numeriUsciti.includes(i)) {
+                casella.classList.toggle("lightblue")
+                numeriUsciti.push(i) 
                 score++
             }else if(bombs.includes(i)){
                 casella.style.background = ("red")
-                console.log("hai perso");
                 contatore = true
             }
             if(contatore){
-                stampScore.innerHTML = score
+                stampScore.innerHTML = "Hai totalizzato " + score + " punti"
                 console.log(score);
+                numeriUsciti = 0
+                bombs = 0
             }
             
         })
@@ -86,6 +92,11 @@ function cellGeneretor(cell) {
 cellGeneretor(cellQuantity)
 
 
+let quantityBomb = 16
+
+let bombs = []
+
+//Genera bombe
 
 /**
  * 
@@ -100,21 +111,8 @@ function bombsGeneration(numberBombs,bombe) {
     }
 }
 
-
 bombsGeneration(quantityBomb,bombs)
 
 console.log(bombs);
 
 
-/*Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe.
-Attenzione:
-**nella stessa cella può essere posizionata al massimo una bomba,
-perciò nell’array delle bombe non potranno esserci due numeri uguali.
-
-In seguito l'utente clicca su una cella:
-se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina.
-Altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
-
-La partita termina quando il giocatore clicca su una bomba o quando raggiunge il numero massimo possibile di numeri consentiti
-(ovvero quando ha rivelato tutte le celle che non sono bombe).
-Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba. */
