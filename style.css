@@ -1,0 +1,54 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.center{
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.container{
+    width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(138, 141, 141);
+}
+
+.casella{
+    width: calc(100% / 10);
+    aspect-ratio: 1/1;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.casella_media{
+    width: calc(100% / 9);
+    aspect-ratio: 1/1;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.casella_facile{
+    width: calc(100% / 7);
+    aspect-ratio: 1/1;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.d_none{
+    display: none;
+}
+
+.lightblue{
+    background-color: lightblue;
+}
