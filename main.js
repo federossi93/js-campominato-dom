@@ -43,6 +43,9 @@ quantityBomb = 16
 let bombs = []
 
 
+let contatore = false
+
+let score = 0
 
 /**
  * 
@@ -59,13 +62,13 @@ function cellGeneretor(cell) {
 
         casella.addEventListener("click",function() {
             console.log(i);
-            let contatore = false
+            
             if (!bombs.includes(i)) {
                 casella.classList.toggle("lightblue") 
-                let score = 0
                 score++
             }else if(bombs.includes(i)){
                 casella.style.background = ("red")
+                console.log("hai perso");
                 contatore = true
             }
             if(contatore){
