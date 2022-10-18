@@ -27,23 +27,10 @@
     justify-content: center;
 }
 
-.casella_media{
-    width: calc(100% / 9);
-    aspect-ratio: 1/1;
-    border: 1px solid black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.red{
+    background-color: red;
 }
 
-.casella_facile{
-    width: calc(100% / 7);
-    aspect-ratio: 1/1;
-    border: 1px solid black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 .d_none{
     display: none;

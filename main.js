@@ -13,55 +13,91 @@ let container = document.querySelector(".container")
 console.log(container);
 
 //creo una evento click al pulsante per far comparire la griglia
-btn.addEventListener("click",function(){
-    console.log("ho cliccato il bottone");
-    container.classList.remove("d_none")
-})
+
+/**
+ * 
+ * @param {Element} GenerateGame Pulsante per generare il capo da gico
+ * @param {Element} gameField campo da gioco
+ */
+
+function createGame(GenerateGame,gameField) {
+    GenerateGame.addEventListener("click",function(){
+        console.log("ho cliccato il bottone");
+        gameField.classList.remove("d_none")
+    })
+    return GenerateGame
+}
+
+createGame(btn,container)
+
+
+
 
 //creare un ciclo per creare le caselle con dentro 1 numero da 1 a 100
 //creo elemento nella dom e lo appendo al contenitore
 
-let numDiff = 100
+let cellQuantity = 100
 
-let numMedio = 81
+quantityBomb = 16
 
-let numFacile = 49
+let bombs = []
+/**
+ * 
+ * @param {number} cell numero di caselle generate
+ */
 
-let scelta = prompt("Scegli Difficoltà (difficile , medio , facile)")
-
-if (scelta == "difficile") {
-    for (let i = 1; i <= numDiff; i++) {
+function cellGeneretor(cell) {
+    for (let i = 1; i <= cell; i++) {
         let casella = document.createElement("div")
         casella.classList.add("casella")
         casella.append(i)
         container.append(casella)
-        casella.addEventListener("click",function() {
-            console.log(this);
-        casella.classList.toggle("lightblue")
-        })
-    }
 
-}else if(scelta == "medio"){
-    for (let i = 1; i <= numMedio; i++) {
-        let casella = document.createElement("div")
-        casella.classList.add("casella_media")
-        casella.append(i)
-        container.append(casella)
-        casella.addEventListener("click",function() {
-            console.log(this);
-        casella.classList.toggle("lightblue")
-        })
-    }
-
-}else if(scelta == "facile"){
-    for (let i = 1; i <= numFacile; i++) {
-        let casella = document.createElement("div")
-        casella.classList.add("casella_facile")
-        casella.append(i)
-        container.append(casella)
         casella.addEventListener("click",function() {
             console.log(i);
-        casella.classList.toggle("lightblue")
+            
+            if (bombs.includes(i)) {
+                casella.classList.toggle("red") 
+            }else{
+                casella.classList.toggle("lightblue") 
+            }
+            
         })
     }
 }
+
+cellGeneretor(cellQuantity)
+
+
+
+/**
+ * 
+ * @param {number} numberBombs lista bombe generate in un array
+ */
+
+function bombsGeneration(numberBombs,bombe) {
+    for (let i = 0; i < numberBombs; i++) {
+        let random = Math.floor(Math.random()* 101)
+        bombe.push(random)
+        
+    }
+}
+
+
+bombsGeneration(quantityBomb,bombs)
+
+console.log(bombs);
+
+
+/*Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe.
+Attenzione:
+**nella stessa cella può essere posizionata al massimo una bomba,
+perciò nell’array delle bombe non potranno esserci due numeri uguali.
+
+In seguito l'utente clicca su una cella:
+se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina.
+Altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
+
+La partita termina quando il giocatore clicca su una bomba o quando raggiunge il numero massimo possibile di numeri consentiti
+(ovvero quando ha rivelato tutte le celle che non sono bombe).
+Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba. */
