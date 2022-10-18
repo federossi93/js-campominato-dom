@@ -47,6 +47,9 @@ let contatore = false
 
 let score = 0
 
+let stampScore = document.querySelector(".final_score")
+
+
 /**
  * 
  * @param {number} cell numero di caselle generate
@@ -72,7 +75,8 @@ function cellGeneretor(cell) {
                 contatore = true
             }
             if(contatore){
-                console.log("score");
+                stampScore.innerHTML = score
+                console.log(score);
             }
             
         })
