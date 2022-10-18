@@ -41,10 +41,14 @@ let cellQuantity = 100
 quantityBomb = 16
 
 let bombs = []
+
+
+
 /**
  * 
  * @param {number} cell numero di caselle generate
  */
+
 
 function cellGeneretor(cell) {
     for (let i = 1; i <= cell; i++) {
@@ -55,11 +59,17 @@ function cellGeneretor(cell) {
 
         casella.addEventListener("click",function() {
             console.log(i);
-            
-            if (bombs.includes(i)) {
-                casella.classList.toggle("red") 
-            }else{
+            let contatore = false
+            if (!bombs.includes(i)) {
                 casella.classList.toggle("lightblue") 
+                let score = 0
+                score++
+            }else if(bombs.includes(i)){
+                casella.style.background = ("red")
+                contatore = true
+            }
+            if(contatore){
+                console.log("score");
             }
             
         })
